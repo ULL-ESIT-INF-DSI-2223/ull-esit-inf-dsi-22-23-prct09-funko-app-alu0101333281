@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import chalk from "chalk";
 
 /**
  * Funcion que imprime una cadena de un color determinado
@@ -7,19 +7,19 @@ import chalk from 'chalk';
  */
 export function print(s: string, c?: string) {
   switch (c) {
-    case 'blue':
+    case "blue":
       console.log(chalk.blueBright(s));
       break;
-    case 'red':
+    case "red":
       console.log(chalk.redBright(s));
       break;
-    case 'green':
+    case "green":
       console.log(chalk.greenBright(s));
       break;
-    case 'white':
+    case "white":
       console.log(chalk.whiteBright(s));
       break;
-    case 'yellow':
+    case "yellow":
       console.log(chalk.yellowBright(s));
       break;
     default:
