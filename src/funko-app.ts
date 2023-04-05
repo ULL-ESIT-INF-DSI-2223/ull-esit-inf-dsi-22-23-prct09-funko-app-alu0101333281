@@ -8,11 +8,18 @@ const userName: string = 'User name';
 
 /**
  * Funcion para implementar el comando add.
- * Añade una nota
- * @param user propietario de la nota
- * @param title titulo de la nota
- * @param body cuerpo de la nota
- * @param color de la nota
+ * añade un funko 
+ * @param user propietario del funko
+ * @param name nombre del funko a añadir
+ * @param id  identificador del funko
+ * @param description description del funko
+ * @param type tipo del funko
+ * @param genre genero del funko
+ * @param franchise franquicia en la que pertenece el funko
+ * @param number numero del funko
+ * @param exclusive si el funko es exclusivo 
+ * @param specialFeatures si presenta caracteristicas especiales 
+ * @param marketValue valor en el mercado 
  */
 yargs.command({
   command: 'add',
@@ -92,11 +99,18 @@ yargs.command({
 /**
  * Funcion para implementar el comando modify.
  * Modifica una nota existente
- * @param user propietario de la nota
- * @param title titulo de la nota a modificar
- * @param newtitle nuevo titulo de la nota
- * @param body nuevo cuerpo de la nota
- * @param color nuevo color de la nota
+ * @param user propietario del funko
+ * @param name nombre del funko a modificar
+ * @param newName nombre del funko modificado
+ * @param id  identificador del funko
+ * @param description description del funko
+ * @param type tipo del funko
+ * @param genre genero del funko
+ * @param franchise franquicia en la que pertenece el funko
+ * @param number numero del funko
+ * @param exclusive si el funko es exclusivo 
+ * @param specialFeatures si presenta caracteristicas especiales 
+ * @param marketValue valor en el mercado 
  */
 yargs.command({
   command: 'modify',
@@ -178,11 +192,13 @@ yargs.command({
   },
 });
 
+
+
 /**
  * Funcion para implementar el comando read.
- * Lee una nota determinada de un usuario
- * @param user propietario de la nota
- * @param title titulo de la nota
+ * lee un funko existente
+ * @param user propietario del funko
+ * @param name nombre del funko  
  */
 yargs.command({
   command: 'read',
@@ -208,9 +224,9 @@ yargs.command({
 
 /**
  * Funcion para implementar el comando delete.
- * Borra una nota determinada de un usuario
- * @param user propietario de la nota
- * @param title titulo de la nota
+ * Borra un funko determinado de un usuario
+ * @param user propietariol funko
+ * @param name nombre del funko
  */
 yargs.command({
   command: 'delete',
@@ -238,11 +254,8 @@ yargs.command({
 
 /**
  * Funcion para implementar el comando list.
- * Lista las notas de un usuario
- * @param user usuario selecionado para listar sus notas
- * @param ot OnlyTitles flag para determinar si se imprimen solo los titulos o no
- *           Si se expresa --ot entonces solo se mostraran los titulos, en otro
- *           caso, se mostraran las notas completas.
+ * Lista los funkos de un usuario
+ * @param user usuario selecionado para listar sus funko
  */
 yargs.command({
   command: 'list',

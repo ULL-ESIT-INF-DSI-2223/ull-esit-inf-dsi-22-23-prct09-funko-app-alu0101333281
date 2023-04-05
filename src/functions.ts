@@ -6,7 +6,21 @@ import {print} from './printer.js';
 export const userDir: string = 'funko/';
 
 
-
+/**
+ * Creates a new Funko in the user's collection.
+ * @param {string} user - The name of the user whose collection the Funko belongs to.
+ * @param {number} id - The unique identifier of the Funko.
+ * @param {string} name - The name of the Funko.
+ * @param {string} description - A description of the Funko.
+ * @param {string} type - The type of the Funko.
+ * @param {string} genre - The genre of the Funko.
+ * @param {string} franchise - The franchise that the Funko belongs to.
+ * @param {number} number - The number of the Funko in the series.
+ * @param {boolean} exclusive - A flag indicating if the Funko is exclusive.
+ * @param {string} specialFeatures - A description of any special features of the Funko.
+ * @param {number} marketValue - The market value of the Funko.
+ * @returns {boolean} - A boolean indicating if the Funko was successfully created.
+ */
 export function createFunko(user: string, id: number, name: string, description: string, type: string, genre: string, franchise: string, number: number, exclusive: boolean, specialFeatures: string, marketValue: number): boolean {
   let exitStatus: boolean = false;
   if (id === undefined || name === undefined ||
@@ -36,7 +50,23 @@ export function createFunko(user: string, id: number, name: string, description:
   return exitStatus;
 }
 
-
+/**
+ * Modifies an existing Funko in the user's collection.
+ *
+ * @param user - The username of the user's collection.
+ * @param id - The id of the Funko.
+ * @param name - The name of the Funko to modify.
+ * @param newname - The new name for the Funko.
+ * @param description - The new description for the Funko.
+ * @param type - The new type for the Funko.
+ * @param genre - The new genre for the Funko.
+ * @param franchise - The new franchise for the Funko.
+ * @param number - The new number for the Funko.
+ * @param exclusive - The new exclusive status for the Funko.
+ * @param specialFeatures - The new special features for the Funko.
+ * @param marketValue - The new market value for the Funko.
+ * @returns A boolean indicating whether the Funko was successfully modified.
+ */
 export function modifyFunko(user: string, id: number, name: string, newname: string,description: string, type: string, genre: string, franchise: string, number: number, exclusive: boolean, specialFeatures: string, marketValue: number): boolean {
   let exitStatus: boolean = false;
   if (fs.existsSync(userDir + user + '/' + name)) {
@@ -50,7 +80,13 @@ export function modifyFunko(user: string, id: number, name: string, newname: str
   return exitStatus;
 }
 
+/**
 
+Deletes a Funko from the specified user's collection.
+@param user - The name of the user.
+@param name - The name of the Funko to delete.
+@returns A boolean indicating whether the operation was successful or not.
+*/
 export function deleteFunko(user: string, name: string): boolean {
   let exitStatus: boolean = false;
   if (fs.existsSync(userDir + user)) {
@@ -66,6 +102,11 @@ export function deleteFunko(user: string, name: string): boolean {
   return exitStatus;
 }
 
+/**
+
+Lists all Funkos in a user's collection, displaying their name, type, genre, and market value color-coded based on their value.
+@param user The name of the user whose collection is being listed.
+*/
 export function listFunkos(user: string): void {
   const greenRange: number = 100;
   const yellowRange: number = 50;
@@ -99,11 +140,11 @@ export function listFunkos(user: string): void {
 }
 
 /**
- * Lee una nota determinada de un usuario
- * Si hay algun error en el proceso muestra por pantalla los
- * detalles del error.
- * @param user propietario de la nota
- * @param title titulo de la nota
+
+Reads the attributes of a Funko figure and prints them to the console.
+@param name - The name of the Funko figure to be read.
+@param user - The name of the user who owns the Funko figure.
+@returns True if the Funko figure is successfully read, false otherwise.
 */
 export function readFunko(name: string, user: string): boolean {
   let exitStatus: boolean = true;
@@ -135,7 +176,14 @@ export function readFunko(name: string, user: string): boolean {
   return exitStatus;
 }
 
+/**
 
+This function retrieves a specific attribute of a Funko Pop! figure by name and user.
+@param name - The name of the Funko Pop! figure to retrieve the attribute from.
+@param user - The name of the user who owns the Funko Pop! figure.
+@param attr - The name of the attribute to retrieve.
+@returns The value of the specified attribute as a string or undefined if the attribute is not found.
+*/
 export function getFunkoAtributte(name: string, user: string, attr: string): string | undefined {
   let out: string = '';
   if (fs.existsSync(userDir + user)) {
