@@ -1,0 +1,13 @@
+{
+ "user": "testUser",
+ "id": 123,
+ "name": "funko1",
+ "description": "Descripción del funko",
+ "type": "Pop!",
+ "genre": "Peliculas y TV",
+ "franchise": "Marvel",
+ "number": 10,
+ "exclusive": true,
+ "specialFeatures": "Edición limitada",
+ "marketValue": 50.99
+}

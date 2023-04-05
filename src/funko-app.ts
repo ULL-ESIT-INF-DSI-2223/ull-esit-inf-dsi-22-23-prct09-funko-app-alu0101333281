@@ -100,39 +100,78 @@ yargs.command({
  */
 yargs.command({
   command: 'modify',
-  describe: 'Modify a note',
+  describe: 'Modify a funko',
   builder: {
     user: {
-      describe: userName,
-      demandOption: true,
-      type: 'string',
-    },
-    title: {
-      describe: noteTittle,
-      demandOption: true,
-      type: 'string',
-    },
-    newtitle: {
-      describe: noteTittle,
-      demandOption: true,
-      type: 'string',
-    },
-    body: {
-      describe: 'New note body',
-      demandOption: true,
-      type: 'string',
-    },
-    color: {
-      describe: 'New note color',
-      demandOption: true,
-      type: 'string',
-    },
+        describe: userName,
+        demandOption: true,
+        type: 'string',
+      },
+      name: {
+        describe: funkoName,
+        demandOption: true,
+        type: 'string',
+      },
+      newname: {
+        describe: funkoName,
+        demandOption: true,
+        type: 'string',
+      },
+      id: {
+        describe: 'Funko id',
+        demandOption: true,
+        type: 'number',
+      },
+      description: {
+        describe: 'Funko description',
+        demandOption: true,
+        type: 'string',
+      },
+      type: {
+          describe: 'Funko type',
+          demandOption: true,
+          type: 'string',
+          choices: ['Pop!', 'Pop! Rides', 'Vynil Soda', 'Vynil Gold'],
+      },
+      genre: {
+          describe: 'Funko genre',
+          demandOption: true,
+          type: 'string',
+          choices: ['Animacion', 'Peliculas y TV', 'Videojuegos', 'Deportes', 'Musica', 'Anime'],
+      },
+      franchise: {
+          describe: 'Funko franchise',
+          demandOption: true,
+          type: 'string',
+      },
+      number: {
+          describe: 'Funko number',
+          demandOption: true,
+          type: 'number',
+        },
+      exclusive: {
+          describe: 'Funko exclusive',
+          demandOption: true,
+          type: 'boolean',
+      },
+      specialFeatures: {
+          describe: 'Funko specialFeatures',
+          demandOption: true,
+          type: 'string',
+      },
+      marketValue: {
+          describe: 'Funko marketValue',
+          demandOption: true,
+          type: 'number',
+      }
   },
   handler(argv) {
-    if (typeof argv.title === 'string' && typeof argv.user === 'string' &&
-        typeof argv.body === 'string' && typeof argv.color === 'string' &&
-        typeof argv.newtitle === 'string') {
-      if (fu.modifyFunko(argv.title, argv.newtitle, argv.body, argv.user, argv.color)) {
+    if (typeof argv.user === 'string' && typeof argv.id === 'number' &&
+        typeof argv.name === 'string' && typeof argv.description === 'string' &&
+        typeof argv.type === 'string' && typeof argv.genre === 'string' && 
+        typeof argv.franchise === 'string' && typeof argv.number === 'number' && 
+        typeof argv.exclusive === 'boolean' && typeof argv.specialFeatures === 'string' && typeof argv.marketValue === 'number') {
+      if (fu.modifyFunko(argv.user, argv.id, argv.name, argv.newname,argv.description, argv.type, argv.genre, argv.franchise, argv.number, argv.exclusive, argv.specialFeatures, argv.marketValue)) {
         console.log(chalk.greenBright(`${argv.title} modified succesfully. Now: ${argv.newtitle}`));
       }
     }
@@ -147,22 +186,22 @@ yargs.command({
  */
 yargs.command({
   command: 'read',
-  describe: 'Read a note',
+  describe: 'Read a funko',
   builder: {
-    user: {
+    name: {
       describe: userName,
       demandOption: true,
       type: 'string',
     },
-    title: {
-      describe: noteTittle,
+    user: {
+      describe: funkoName,
       demandOption: true,
       type: 'string',
     },
   },
   handler(argv) {
-    if (typeof argv.title === 'string' && typeof argv.user === 'string') {
-      fu.readNote(argv.title, argv.user);
+    if (typeof argv.name === 'string' && typeof argv.user === 'string') {
+      fu.readFunko(argv.name, argv.user);
     }
   },
 });
@@ -175,22 +214,22 @@ yargs.command({
  */
 yargs.command({
   command: 'delete',
-  describe: 'Delete a note',
+  describe: 'Delete a funko',
   builder: {
     user: {
       describe: userName,
       demandOption: true,
       type: 'string',
     },
-    title: {
-      describe: noteTittle,
+    name: {
+      describe: funkoName,
       demandOption: true,
       type: 'string',
     },
   },
   handler(argv) {
     if (typeof argv.title === 'string' && typeof argv.user === 'string') {
-      if (fu.deleteNote(argv.title, argv.user)) {
+      if (fu.deleteFunko(argv.title, argv.user)) {
         console.log(chalk.yellowBright(`${argv.title} deleted suscessfully`));
       }
     }
@@ -207,26 +246,17 @@ yargs.command({
  */
 yargs.command({
   command: 'list',
-  describe: 'List user notes',
+  describe: 'List funko',
   builder: {
     user: {
-      describe: 'Users note list',
+      describe: 'Users funko list',
       demandOption: true,
       type: 'string',
-    },
-    ot: {
-      describe: 'Only titles',
-      demandOption: false,
-      boolean: true,
     },
   },
   handler(argv) {
     if (typeof argv.user === 'string') {
-      if (argv.ot) {
-        fu.listNoteTitles(argv.user);
-      } else {
-        fu.listNotes(argv.user);
-      }
+        fu.listFunkos(argv.user);
     }
   },
 });

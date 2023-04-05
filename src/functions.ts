@@ -1,13 +1,10 @@
 import * as fs from 'fs';
 import chalk from 'chalk';
-import {print} from './printer';
+import {print} from './printer.js';
 
 
-const userDir: string = 'funko/';
+export const userDir: string = 'funko/';
 
-
-type FunkoType = 'Pop!' | 'Pop! Rides' | 'Vynil Soda' | 'Vynil Gold';
-type FunkoGenre = 'Animacion' | 'Peliculas y TV' | 'Videojuegos' | 'Deportes' | 'Musica' | 'Anime';
 
 
 export function createFunko(user: string, id: number, name: string, description: string, type: string, genre: string, franchise: string, number: number, exclusive: boolean, specialFeatures: string, marketValue: number): boolean {
@@ -33,14 +30,14 @@ export function createFunko(user: string, id: number, name: string, description:
         console.log(chalk.redBright(`Error. Invalid value for 'type'. Valid values are 'Pop!', 'Pop! Rides', 'Vynil Soda' and 'Vynil Gold'.`));
       }
     } else {
-      console.log(chalk.redBright(`Error. Funko already exists at ${user} collection.`));
+      console.log(chalk.redBright(`Error. Fun ko already exists at ${user} collection.`));
     }
   }
   return exitStatus;
 }
 
 
-export function modifyFunko(user: string, id: number, name: string, newname: string,description: string, type: FunkoType, genre: FunkoGenre, franchise: string, number: number, exclusive: boolean, specialFeatures: string, marketValue: number): boolean {
+export function modifyFunko(user: string, id: number, name: string, newname: string,description: string, type: string, genre: string, franchise: string, number: number, exclusive: boolean, specialFeatures: string, marketValue: number): boolean {
   let exitStatus: boolean = false;
   if (fs.existsSync(userDir + user + '/' + name)) {
     deleteFunko(name, user);
@@ -188,3 +185,4 @@ export function getFunkoAtributte(name: string, user: string, attr: string): str
   }
 }
   
+
